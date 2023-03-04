@@ -1,0 +1,29 @@
+.navigation {
+	display: flex;
+	position: fixed;
+	top: 100px;
+	left: 0;
+	width: 150px;
+	background-color: #1b2430;
+	height: 100%;
+}
+
+.menu {
+	list-style: none;
+}
+
+.menu li {
+	padding-bottom: 2rem;
+}
+
+.menu li button {
+	background-color: transparent;
+	color: white;
+	padding: 1rem;
+	border: none;
+	border-radius: 1rem;
+}
+
+.menu li button:hover {
+	background-color: #787a91;
+}

@@ -1,0 +1,14 @@
+.mainNavigation {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	background-color: aqua;
+}
+
+.content {
+	display: flex;
+	background-color: azure;
+}
