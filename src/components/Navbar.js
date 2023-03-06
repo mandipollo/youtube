@@ -7,7 +7,14 @@ const Navbar = () => {
 		<div className={classes.navbar}>
 			<ul className={classes.menu}>
 				<li>
-					<button>Extend sidebar</button>
+					<button style={{ backgroundColor: `transparent`, border: `none` }}>
+						<span
+							style={{ color: `white`, backgroundColor: `transparent` }}
+							className="material-symbols-outlined"
+						>
+							menu
+						</span>
+					</button>
 				</li>
 				<li>
 					<NavLink to="/" end />

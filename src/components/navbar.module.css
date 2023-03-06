@@ -28,10 +28,12 @@
 
 .menu li:nth-child(1) {
 	flex: 1;
+	justify-content: left;
 }
 
 .menu li:nth-child(2) {
 	flex: 1;
+	justify-content: left;
 }
 
 .menu li:nth-child(2) p {
