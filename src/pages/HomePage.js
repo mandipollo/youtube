@@ -10,6 +10,7 @@ const HomePage = () => {
 	const searchInput = useSelector(state => state.searchInput);
 	const [data, setData] = useState();
 
+	// rerender homepage whenever searchInput changes
 	useEffect(() => {
 		let timeoutId;
 		const getData = async () => {

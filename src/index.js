@@ -1,9 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// react router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// redux store
 import { Provider } from "react-redux";
 import store from "./store/store";
+
+// video component
+import VideoDetails from "./components/VideoDetails";
 
 import "./index.css";
 import App from "./App";
@@ -35,6 +41,10 @@ const router = createBrowserRouter([
 			{
 				path: "history",
 				element: <HistoryPage />,
+			},
+			{
+				path: "video/:videosId",
+				element: <VideoDetails />,
 			},
 		],
 	},

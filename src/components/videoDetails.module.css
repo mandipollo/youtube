@@ -1,0 +1,26 @@
+.videoDetails {
+	display: flex;
+	padding: 150px;
+
+	justify-content: center;
+	height: 70vh;
+	flex-direction: column;
+	align-items: center;
+}
+
+.video {
+	flex: 5;
+	width: 80%;
+	height: 80%;
+}
+
+.videoPlayer {
+	width: 100%;
+	height: 100%;
+}
+.description {
+	flex: 1;
+	color: white;
+	justify-content: center;
+	align-items: center;
+}

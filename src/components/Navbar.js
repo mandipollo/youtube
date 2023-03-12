@@ -21,7 +21,6 @@ const Navbar = () => {
 	// submit the value and refresh the value of input field
 	const submitHandler = async e => {
 		e.preventDefault();
-		console.log(`submit handler`);
 
 		const data = await fetchData({ searchInput });
 		console.log(data);
@@ -43,7 +42,16 @@ const Navbar = () => {
 				<li>
 					<NavLink to="/" end />
 
-					<p> YouTube</p>
+					<button
+						className={classes.homeYoutube}
+						style={{
+							border: `none`,
+							backgroundColor: `#1b2430`,
+							color: `white`,
+						}}
+					>
+						YOUTUBE
+					</button>
 				</li>
 
 				<li>
