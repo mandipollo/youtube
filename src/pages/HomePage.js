@@ -1,29 +1,25 @@
 import Feed from "../components/Feed";
-import { useLoaderData } from "react-router-dom";
+import fetchData from "../utilities/fetchData";
 
+import { useEffect, useState } from "react";
+// searchInput value
+import { useSelector } from "react-redux";
+
+// homepage consisting of video thumbnail and video player
 const HomePage = () => {
-	const data = useLoaderData();
+	const searchInput = useSelector(state => state.searchInput);
+	const [data, setData] = useState();
 
-	return <Feed data={data} />;
+	useEffect(() => {
+		const getData = async () => {
+			const result = await fetchData({ searchInput });
+			setData(result);
+		};
+		getData();
+	}, [data, searchInput]);
+	console.log(data);
+
+	return <>{data && <Feed data={data.items} />}</>;
 };
 
 export default HomePage;
-
-export const loader = async () => {
-	const options = {
-		method: "GET",
-		headers: {
-			"X-RapidAPI-Key": "e2ebefbd78msh3ff8f0dafb70886p17aa22jsna8a99d5343f2",
-			"X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-		},
-	};
-
-	const response = await fetch(
-		"https://youtube-v31.p.rapidapi.com/search?q=music&part=snippet%2Cid&regionCode=US&maxResults=50&order=date",
-		options
-	);
-	const data = await response.json();
-	console.log(data);
-
-	return data;
-};

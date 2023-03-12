@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import classes from "./sideBar.module.css";
 
+// sidebar for different content
 const SideBar = () => {
 	return (
 		<header className={classes.navigation}>

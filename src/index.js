@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
+
 import "./index.css";
 import App from "./App";
-import HomePage, { loader as homeLoader } from "./pages/HomePage";
+import HomePage from "./pages/HomePage";
 import ShortsPage from "./pages/ShortsPage";
 import SubscriptionPage from "./pages/SubscriptionPage";
 import HistoryPage from "./pages/HistoryPage";
 import LibraryPage from "./pages/LibraryPage";
 import Root from "./pages/Root";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
 	{
@@ -19,7 +22,6 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <HomePage />,
-				loader: homeLoader,
 			},
 			{
 				path: "shorts",
@@ -40,9 +42,11 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<RouterProvider router={router}>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
-	</RouterProvider>
+	<Provider store={store}>
+		<RouterProvider router={router}>
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>
+		</RouterProvider>
+	</Provider>
 );
