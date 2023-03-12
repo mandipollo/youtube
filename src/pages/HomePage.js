@@ -11,13 +11,21 @@ const HomePage = () => {
 	const [data, setData] = useState();
 
 	useEffect(() => {
+		let timeoutId;
 		const getData = async () => {
 			const result = await fetchData({ searchInput });
 			setData(result);
 		};
-		getData();
-	}, [data, searchInput]);
-	console.log(data);
+
+		const getDelayedGetData = () => {
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(getData, 500);
+		};
+		getDelayedGetData();
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [searchInput]);
 
 	return <>{data && <Feed data={data.items} />}</>;
 };
