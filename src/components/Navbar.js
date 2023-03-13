@@ -1,19 +1,27 @@
 // react router dom
 import { NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // import
 import classes from "./navbar.module.css";
 // api fetch
 import fetchData from "../utilities/fetchData";
-// redux state
+// redux state for searchInput
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchInput } from "../store/searchInputSlice";
+
+//redux state for sidebar toggle
+import { toggleSideBar } from "../store/showSideBarSlice";
 
 // react
 import { useState } from "react";
 
 // navbar with search input that will pass the value to the api
 const Navbar = () => {
+	const toggleStatus = useSelector(state => state.sideBar);
+	const { pathname } = useLocation();
+
+	const isHomePage = pathname === "/";
 	// temporary searchInput holder
 	const [localInputStorage, setLocalInputStorage] = useState(``);
 
@@ -35,11 +43,21 @@ const Navbar = () => {
 		setLocalInputStorage(``);
 	};
 
+	// dispatch action to toggle sidebar
+
+	const toggleSidebar = () => {
+		dispatch(toggleSideBar());
+		console.log(toggleStatus);
+	};
+
 	return (
 		<div className={classes.navbar}>
 			<ul className={classes.menu}>
 				<li>
-					<button style={{ backgroundColor: `transparent`, border: `none` }}>
+					<button
+						onClick={toggleSidebar}
+						style={{ backgroundColor: `transparent`, border: `none` }}
+					>
 						<span
 							style={{ color: `white`, backgroundColor: `transparent` }}
 							className="material-symbols-outlined"
@@ -71,6 +89,7 @@ const Navbar = () => {
 							value={localInputStorage}
 							placeholder="Search"
 						></input>
+
 						<button type="submit" className={classes.searchBtn}>
 							<span className="material-symbols-outlined">search</span>
 						</button>

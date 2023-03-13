@@ -1,26 +1,38 @@
 .videoDetails {
 	display: flex;
-	padding: 150px;
-
+	padding: 10%;
 	justify-content: center;
-	height: 70vh;
 	flex-direction: column;
 	align-items: center;
 }
 
 .video {
 	flex: 5;
-	width: 80%;
-	height: 80%;
+	justify-content: center;
+	display: flex;
+	align-items: center;
 }
 
 .videoPlayer {
-	width: 100%;
-	height: 100%;
+	min-height: 60vh;
+	min-width: 60vw;
+	max-height: 100%;
 }
-.description {
+.about {
 	flex: 1;
 	color: white;
 	justify-content: center;
-	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+	.videoDetails {
+		flex-direction: column-reverse;
+	}
+}
+
+.author {
+	display: flex;
+	flex-direction: row;
 }

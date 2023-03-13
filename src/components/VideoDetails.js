@@ -4,6 +4,15 @@ import { useLocation } from "react-router-dom";
 
 const VideoDetails = () => {
 	const { state } = useLocation();
+	const timeStamp = state.snippet.publishTime;
+	const date = new Date(timeStamp);
+	const formattedDate = new Intl.DateTimeFormat(`en-us`, {
+		month: `2-digit`,
+		year: `numeric`,
+	}).format(date);
+
+	const [month, year] = formattedDate.split("/");
+	const formattedDateMMYY = `${month}/${year}`;
 
 	if (!state) {
 		return (
@@ -22,9 +31,21 @@ const VideoDetails = () => {
 					allowFullScreen
 				/>
 			</div>
-			<div className={classes.description}>
-				<h2>Title: {state.snippet.title}</h2>
-				<p>Description: {state.snippet.description}</p>
+			<div className={classes.about}>
+				<div className={classes.title}>
+					<h2> {state.snippet.title}</h2>
+				</div>
+				<div className={classes.author}>
+					<div>
+						<p>{formattedDateMMYY}</p>
+					</div>
+					<div>
+						<p>{state.snippet.channelTitle} </p>
+					</div>
+				</div>
+				<div className={classes.description}>
+					<p> {state.snippet.description}</p>
+				</div>
 			</div>
 		</div>
 	);

@@ -10,6 +10,7 @@ import store from "./store/store";
 
 // video component
 import VideoDetails from "./components/VideoDetails";
+import VideoPlayerPage from "./pages/VideoPlayerPage";
 
 import "./index.css";
 import App from "./App";
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "video/:videosId",
-				element: <VideoDetails />,
+				element: <VideoPlayerPage />,
 			},
 		],
 	},
