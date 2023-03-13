@@ -1,12 +1,9 @@
 import React from "react";
 import classes from "./videoDetails.module.css";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const VideoDetails = () => {
 	const { state } = useLocation();
-
-	console.log(state);
 
 	if (!state) {
 		return (

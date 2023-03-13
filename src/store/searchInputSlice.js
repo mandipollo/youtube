@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const searchInputSlice = createSlice({
 	name: `searchInput`,
-	initialState: `blackpink`,
+	initialState: ``,
 	reducers: {
 		setSearchInput: (state, action) => {
 			return action.payload;

@@ -1,29 +1,38 @@
+// react router dom
 import { NavLink } from "react-router-dom";
 
+// import
 import classes from "./navbar.module.css";
-
+// api fetch
 import fetchData from "../utilities/fetchData";
 // redux state
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchInput } from "../store/searchInputSlice";
 
+// react
+import { useState } from "react";
+
 // navbar with search input that will pass the value to the api
 const Navbar = () => {
+	// temporary searchInput holder
+	const [localInputStorage, setLocalInputStorage] = useState(``);
+
 	// redux searchInput value from search slice
 	const searchInput = useSelector(state => state.searchInput);
 	const dispatch = useDispatch();
 
 	// dispatch searchinput value to the slice
 	const searchHandler = e => {
-		dispatch(setSearchInput(e.target.value));
+		setLocalInputStorage(e.target.value);
 	};
 
 	// submit the value and refresh the value of input field
 	const submitHandler = async e => {
 		e.preventDefault();
 
-		const data = await fetchData({ searchInput });
-		console.log(data);
+		await fetchData({ searchInput: localInputStorage });
+		dispatch(setSearchInput(localInputStorage));
+		setLocalInputStorage(``);
 	};
 
 	return (
@@ -40,18 +49,18 @@ const Navbar = () => {
 					</button>
 				</li>
 				<li>
-					<NavLink to="/" end />
-
-					<button
-						className={classes.homeYoutube}
-						style={{
-							border: `none`,
-							backgroundColor: `#1b2430`,
-							color: `white`,
-						}}
-					>
-						YOUTUBE
-					</button>
+					<NavLink to="/" end>
+						<button
+							className={classes.homeYoutube}
+							style={{
+								border: `none`,
+								backgroundColor: `#1b2430`,
+								color: `white`,
+							}}
+						>
+							YOUTUBE
+						</button>
+					</NavLink>
 				</li>
 
 				<li>
@@ -59,7 +68,7 @@ const Navbar = () => {
 						<input
 							onChange={searchHandler}
 							name="searchInput"
-							value={searchInput}
+							value={localInputStorage}
 							placeholder="Search"
 						></input>
 						<button type="submit" className={classes.searchBtn}>
